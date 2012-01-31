@@ -1,0 +1,12 @@
+django
+django-email-confirmation
+django-timezones
+pytz
+django-social-auth
+
+django-taggit
+django-templatetag-sugar
+#On windows, please install django-taggit-templatetags manually.
+django-taggit-templatetags
+pil
+

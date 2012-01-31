@@ -1,0 +1,8 @@
+*.pyc
+.idea
+dev.db
+env/*
+webapp/media
+webapp/site_media
+webapp/local_settings.py
+.DS_Store

@@ -1,0 +1,223 @@
+{% extends "bookmark/base.html" %}
+
+{% load i18n %}
+{% load bootstrap_tags %}
+
+{% block extra_head %}
+    <script src="{{ STATIC_URL }}js/jquery.tmpl.min.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.pagination.js"></script>
+
+    <script id="bookmarkTemplate" type="text/x-jquery-tmpl">
+        <div class="row">
+            <div class="span2">
+                <ul class="media-grid">
+                    <li>
+                        <a href="#">
+                            <img class="thumbnail" src="http://placehold.it/90x90" alt="">
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="span7">
+                <p>
+                    <strong>${title}</strong>
+                    <br/>
+                    <small><a href="${url}" target="_blank">${url}</a></small>
+                    <br/>
+                    {% trans "Tags" %} :&nbsp;
+                    {% templatetag openvariable %}each(i, tag) tags{% templatetag closevariable %}
+                    <a class="tag" href="{% url api_bookmarks %}?tag=${tag.name}"><span class="label warning">${tag.name}</span></a>
+                    {% templatetag openvariable %}/each{% templatetag closevariable %}
+                </p>
+                <p>
+                    ${description}
+                </p>
+            </div>
+            <div class="span3">
+                <p>
+                    <small>${owner.username}</small>
+                    <br/>
+                    <small>${create_time}</small>
+                    <br/>
+                    <a class="btn small" href="#">{% trans "Favorite" %} (${num_favorite_users})</a>
+                </p>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/javascript">
+
+        /*
+         * @param {int}page_index New Page index
+         * @param {$} jq the container with the pagination links as a $ object
+         */
+
+        function initPagination(api_url, jq) {
+            $.ajax({
+                url:api_url,
+                success:function (data) {
+                    if (data.total > 0) {
+                        $("#div_pagination").pagination(data.total, {
+                            items_per_page:10,
+                            num_display_entries:3,
+                            num_edge_entries:3,
+                            prev_text:"&larr; Previous",
+                            next_text:"Next &rarr;",
+                            callback:paginationCallback
+                        });
+                    } else {
+                        $("#div_bookmark_list").html("<p>No data</p>");
+                        $("#div_pagination").empty();
+                    }
+                },
+                dataType:"json"
+            });
+        }
+
+        function paginationCallback(page_index, jq) {
+            var mine_url = "";
+            if ($("#li_mine").attr("class") == "active") {
+                mine_url = "&mine=true&order_by=newest";
+            }
+            $.ajax({
+                url:"{% url api_bookmarks %}?current_page=" + (page_index + 1) + "&items_per_page=10" + mine_url,
+                success:function (bookmarks) {
+                    if (bookmarks.data.length > 0) {
+                        $("#div_bookmark_list").empty();
+                        $("#bookmarkTemplate").tmpl(bookmarks.data).appendTo("#div_bookmark_list");
+                    } else {
+                        $("#div_bookmark_list").html("<p>No data</p>");
+                        $("#div_pagination").empty();
+                    }
+                },
+                dataType:"json"
+            });
+        }
+
+        function renderData(api_url) {
+            if (api_url == null || api_url == "") {
+                api_url = "{% url api_bookmarks %}";
+            }
+            $.ajax({
+                url:api_url,
+                success:function (bookmarks) {
+                    if (bookmarks.data.length > 0) {
+                        $("#div_bookmark_list").empty();
+                        $("#bookmarkTemplate").tmpl(bookmarks.data).appendTo("#div_bookmark_list");
+                    } else {
+                        $("#div_bookmark_list").html("<p>No data</p>");
+                        $("#div_pagination").empty();
+                    }
+                },
+                dataType:"json"
+            });
+        }
+
+        function create_bookmark() {
+            send_dict = {
+                url:"{% url api_bookmarks %}",
+                type:"POST",
+                data:$("#form_bookmark").serialize(),
+                processData:false,
+                dataType:"json",
+                success:function (json, textStatus) {
+                    if (json.redirect) {
+                        window.location.href = json.redirect;
+                    }
+                    $("#model-form-bookmark").modal({show:false});
+                    $("#form_bookmark :input:not(:checkbox)").val("");
+                    var mine_url = "";
+                    if ($("#li_mine").attr("class") == "active") {
+                        mine_url = "&mine=true&order_by=newest";
+                    }
+                    renderData("{% url api_bookmarks %}?current_page=1&items_per_page=10" + mine_url);
+                },
+                error:function (xmlHttpRequest, textStatus, errorThrown) {
+                    //alert(xmlHttpRequest.responseText);
+                    $("#bookmark-error").html(xmlHttpRequest.responseText);
+                }
+            };
+
+            $.ajax(send_dict);
+
+            return false;
+        }
+
+        $(function () {
+            // init page data and render to page
+            initPagination("{% url api_bookmarks %}?current_page=1&items_per_page=1", $("#div_pagination"));
+
+            // submit data to create bookmark
+            $("#form_bookmark").submit(function () {
+                create_bookmark();
+                return false;
+            });
+
+            $("ul.pills > li").click(function () {
+                $("ul.pills > li").removeClass("active");
+                $(this).toggleClass("active");
+                var selected_li_id = $(this).attr("id");
+                if (selected_li_id == "li_newest") {
+                    initPagination("{% url api_bookmarks %}" + "?order_by=newest");
+                } else if (selected_li_id == "li_hottest") {
+                    initPagination("{% url api_bookmarks %}" + "?order_by=hottest");
+                } else if (selected_li_id == "li_mine") {
+                    initPagination("{% url api_bookmarks %}?mine=true&items_per_page=1", $("#div_pagination"));
+                    //renderData("{% url api_bookmarks %}" + "?mine=true");
+                } else {
+                    // Do nothing.
+                }
+
+            });
+
+            $("#div_bookmark_list > a").click(function() {
+                alert("test");
+            })
+
+        });
+    </script>
+{% endblock %}
+
+{% block head_title %}{% trans "Bookmark" %}{% endblock %}
+
+{% block body %}
+    <div class="page-header">
+        <div class="row">
+            <div class="span7"><h1>Bookmark</h1></div>
+            <div class="span5">
+                <ul class="pills">
+                    <li id="li_newest" {% if order_by == "newest" %}class="active"{% endif %}><a href="#">{% trans "Newest" %}</a></li>
+                    <li id="li_hottest" {% if order_by == "hottest" %}class="active"{% endif %}><a href="#">{% trans "Hottest" %}</a></li>
+                    <li id="li_mine"><a href="#">{% trans "Mine" %}</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="div_bookmark_list"></div>
+    <div id="div_pagination" class="pagination"></div>
+
+    <div id="model-form-bookmark" class="modal hide fade">
+        <form id="form_bookmark" action="." method="post">
+            <div class="modal-header">
+                <a href="#" class="close">&times;</a>
+
+                <h3>{% trans "Add bookmark" %}</h3>
+            </div>
+            <div id="bookmark-error"></div>
+            <div class="modal-body">
+
+                {% csrf_token %}
+                <fieldset>
+                    {{ form|as_bootstrap }}
+                </fieldset>
+            </div>
+            <div class="modal-footer">
+                <button id="btn_add_bookmark" class="btn large primary">{% trans "Submit" %}
+                </button>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}

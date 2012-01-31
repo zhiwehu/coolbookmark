@@ -1,0 +1,625 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-01-20 10:16-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#: settings.py:43
+msgid "English"
+msgstr "英语"
+
+#: settings.py:44
+msgid "France"
+msgstr "法语"
+
+#: settings.py:45
+msgid "Simplified Chinese"
+msgstr "简体中文"
+
+#: settings.py:46
+msgid "Chinese Traditional"
+msgstr "繁体中文"
+
+#: apps/account/forms.py:41 apps/account/forms.py:114
+#: apps/account/forms.py:327
+msgid "Password"
+msgstr "密码"
+
+#: apps/account/forms.py:45
+msgid "Remember Me"
+msgstr "记住我"
+
+#: apps/account/forms.py:46
+msgid "If checked you will stay logged in for 3 weeks"
+msgstr "三周内自动登录"
+
+#: apps/account/forms.py:57 apps/account/forms.py:131
+#: apps/account/forms.py:266 apps/account/forms.py:348
+msgid "Email"
+msgstr "邮件"
+
+#: apps/account/forms.py:62 apps/account/forms.py:109
+msgid "Username"
+msgstr "用户名"
+
+#: apps/account/forms.py:90
+msgid "This account is currently inactive."
+msgstr "此帐户已经被暂停"
+
+#: apps/account/forms.py:93
+msgid "The email address and/or password you specified are not correct."
+msgstr "邮件或者密码不正确"
+
+#: apps/account/forms.py:95
+msgid "The username and/or password you specified are not correct."
+msgstr "用户名密码不正确"
+
+#: apps/account/forms.py:118 apps/account/forms.py:331
+msgid "Password (again)"
+msgstr "密码(再输一次)"
+
+#: apps/account/forms.py:134
+msgid "Email (optional)"
+msgstr "邮件(可选)"
+
+#: apps/account/forms.py:139
+msgid "Usernames can only contain letters, numbers and underscores."
+msgstr "用户名只能包括字母，数字和下划线"
+
+#: apps/account/forms.py:144
+msgid "This username is already taken. Please choose another."
+msgstr "此用户名已经被使用，请换一个"
+
+#: apps/account/forms.py:153
+msgid "A user is registered with this email address."
+msgstr "这个邮件已经被注册过了"
+
+#: apps/account/forms.py:159 apps/account/forms.py:318
+#: apps/account/forms.py:338 apps/account/forms.py:402
+msgid "You must type the same password each time."
+msgstr "两次输入的密码必须一致"
+
+#: apps/account/forms.py:208
+msgid "Your email address has already been verified"
+msgstr "你的邮件地址已经被确认"
+
+#: apps/account/forms.py:218 apps/account/forms.py:228
+#: apps/account/views.py:167 apps/account/views.py:182
+#, python-format
+msgid "Confirmation email sent to %(email)s"
+msgstr "验证邮件已经发往%(email)s"
+
+#: apps/account/forms.py:274
+msgid "This email address already associated with this account."
+msgstr "这个邮件地址已经被关联到此帐户"
+
+#: apps/account/forms.py:275
+msgid "This email address already associated with another account."
+msgstr "这个邮件地址已经被其他用户使用过了"
+
+#: apps/account/forms.py:298
+msgid "Current Password"
+msgstr "当前密码"
+
+#: apps/account/forms.py:302 apps/account/forms.py:386
+msgid "New Password"
+msgstr "新密码"
+
+#: apps/account/forms.py:306 apps/account/forms.py:390
+msgid "New Password (again)"
+msgstr "新密码(再输一次)"
+
+#: apps/account/forms.py:312
+msgid "Please type your current password."
+msgstr "请输入你当前密码"
+
+#: apps/account/forms.py:355
+msgid "Email address not verified for any user account"
+msgstr "邮件地址没有被任何用户验证过"
+
+#: apps/account/forms.py:373
+msgid "Password reset email sent"
+msgstr "密码重置邮件已经发出"
+
+#: apps/account/forms.py:415 apps/theme/templates/account/base.html:23
+#: apps/theme/templates/account/timezone_change.html:6
+#: apps/theme/templates/account/timezone_change.html:9
+msgid "Timezone"
+msgstr "时区"
+
+#: apps/account/forms.py:428 apps/theme/templates/account/base.html:21
+#: apps/theme/templates/account/language_change.html:6
+#: apps/theme/templates/account/language_change.html:9
+msgid "Language"
+msgstr "语言"
+
+#: apps/account/models.py:18 apps/account/models.py:45
+msgid "user"
+msgstr "用户"
+
+#: apps/account/models.py:20
+msgid "timezone"
+msgstr "时区"
+
+#: apps/account/models.py:21
+msgid "language"
+msgstr "语言"
+
+#: apps/account/models.py:47
+msgid "temp_key"
+msgstr "临时 key"
+
+#: apps/account/models.py:48
+msgid "timestamp"
+msgstr "时间戳"
+
+#: apps/account/models.py:49
+msgid "reset yet?"
+msgstr "已经重置?"
+
+#: apps/account/views.py:74 apps/account/views.py:137
+#, python-format
+msgid "Successfully logged in as %(user)s."
+msgstr "%(user)s 登录成功"
+
+#: apps/account/views.py:198
+#, python-format
+msgid "Removed email address %(email)s"
+msgstr "%(email)s 被移除"
+
+#: apps/account/views.py:237 apps/account/views.py:356
+msgid "Password successfully changed."
+msgstr "密码修改成功"
+
+#: apps/account/views.py:266
+msgid "Password successfully set."
+msgstr "密码重置成功"
+
+#: apps/account/views.py:384
+msgid "Timezone successfully updated."
+msgstr "时区修改成功"
+
+#: apps/account/views.py:409
+msgid "Language successfully updated."
+msgstr "语言修改成功"
+
+#: apps/signup_codes/views.py:75
+#, python-format
+msgid "Successfully logged in as %(username)s."
+msgstr "%(username)s 登录成功"
+
+#: apps/signup_codes/views.py:124
+#, python-format
+msgid "An email has been sent to %(email)s."
+msgstr "邮件已经发往%(email)s"
+
+#: apps/signup_codes/views.py:134
+msgid "Invite user"
+msgstr "无效用户"
+
+#: apps/theme/templates/404.html:5
+msgid "Not Found"
+msgstr "没有发现"
+
+#: apps/theme/templates/404.html:8
+msgid "We're sorry but that page could not be found."
+msgstr "很抱歉这个页面没有找到"
+
+#: apps/theme/templates/500.html:5
+msgid "Server Error"
+msgstr "服务器出错"
+
+#: apps/theme/templates/500.html:8
+msgid ""
+"We're sorry but a server error has occurred. We've been notified and will "
+"look into it as soon as possible."
+msgstr ""
+
+#: apps/theme/templates/account/base.html:9
+#: apps/theme/templates/account/email.html:6
+msgid "Account"
+msgstr "帐户"
+
+#: apps/theme/templates/account/base.html:11
+#: apps/theme/templates/account/email.html:9
+msgid "Email Addresses"
+msgstr "邮件地址"
+
+#: apps/theme/templates/account/base.html:13
+#: apps/theme/templates/account/password_change.html:6
+#: apps/theme/templates/account/password_change.html:9
+#: apps/theme/templates/account/password_reset_from_key.html:5
+#: apps/theme/templates/account/password_reset_from_key.html:8
+msgid "Change Password"
+msgstr ""
+
+#: apps/theme/templates/account/base.html:15
+#: apps/theme/templates/account/password_set.html:6
+#: apps/theme/templates/account/password_set.html:9
+msgid "Set Password"
+msgstr ""
+
+#: apps/theme/templates/account/base.html:18
+#: apps/theme/templates/account/password_delete.html:5
+#: apps/theme/templates/account/password_delete.html:8
+msgid "Delete Password"
+msgstr ""
+
+#: apps/theme/templates/account/base.html:25
+msgid "Social Network"
+msgstr ""
+
+#: apps/theme/templates/account/email.html:18
+msgid "verified"
+msgstr ""
+
+#: apps/theme/templates/account/email.html:20
+msgid "primary"
+msgstr ""
+
+#: apps/theme/templates/account/email.html:28
+msgid "make primary"
+msgstr ""
+
+#: apps/theme/templates/account/email.html:33
+msgid "unverified"
+msgstr ""
+
+#: apps/theme/templates/account/email.html:40
+msgid "re-send verification email"
+msgstr ""
+
+#: apps/theme/templates/account/email.html:51
+msgid "remove"
+msgstr ""
+
+#: apps/theme/templates/account/email.html:59
+msgid ""
+"You should really add an email address so you can receive notifications, "
+"reset your password if you forget it, etc."
+msgstr ""
+
+#: apps/theme/templates/account/email.html:63
+msgid "Add Email Address"
+msgstr ""
+
+#: apps/theme/templates/account/email.html:72
+msgid "add"
+msgstr ""
+
+#: apps/theme/templates/account/language_change.html:11
+msgid "This site can be used in your preferred language."
+msgstr ""
+
+#: apps/theme/templates/account/language_change.html:19
+msgid "Change my language"
+msgstr ""
+
+#: apps/theme/templates/account/login.html:8
+msgid "Login"
+msgstr ""
+
+#: apps/theme/templates/account/login.html:12
+#: apps/theme/templates/account/signup.html:15
+msgid "Log In"
+msgstr ""
+
+#: apps/theme/templates/account/login.html:16
+#: apps/theme/templates/account/password_reset.html:13
+#: apps/theme/templates/account/password_reset_done.html:12
+msgid "Note"
+msgstr ""
+
+#: apps/theme/templates/account/login.html:16
+#: apps/theme/templates/account/password_reset.html:13
+#: apps/theme/templates/account/password_reset_done.html:12
+#, python-format
+msgid "you are already logged in as %(user_display)s."
+msgstr ""
+
+#: apps/theme/templates/account/login.html:20
+#, python-format
+msgid "Don't have an account? <a href=\"%(signup_url)s\">Sign up</a>!"
+msgstr ""
+
+#: apps/theme/templates/account/login.html:23
+msgid "Forgot password?"
+msgstr ""
+
+#: apps/theme/templates/account/login.html:36
+msgid "Log in"
+msgstr ""
+
+#: apps/theme/templates/account/login.html:41
+#: apps/theme/templates/account/signup.html:31
+msgid "Or sign in with your Social network"
+msgstr ""
+
+#: apps/theme/templates/account/login.html:60
+#, python-format
+msgid ""
+"If you have any trouble logging in to your account, contact us at <a href="
+"\"mailto:%(CONTACT_EMAIL)s\">%(CONTACT_EMAIL)s</a>."
+msgstr ""
+
+#: apps/theme/templates/account/logout.html:5
+msgid "Logout"
+msgstr ""
+
+#: apps/theme/templates/account/logout.html:8
+msgid "You've been logged out."
+msgstr ""
+
+#: apps/theme/templates/account/password_change.html:17
+#: apps/theme/templates/account/password_reset_from_key.html:21
+msgid "change password"
+msgstr ""
+
+#: apps/theme/templates/account/password_delete.html:10
+msgid ""
+"You may delete your password since you are currently logged in using OpenID."
+msgstr ""
+
+#: apps/theme/templates/account/password_delete.html:13
+msgid "delete my password"
+msgstr ""
+
+#: apps/theme/templates/account/password_delete_done.html:5
+#: apps/theme/templates/account/password_delete_done.html:8
+msgid "Password Deleted"
+msgstr ""
+
+#: apps/theme/templates/account/password_delete_done.html:10
+msgid "Your password has been deleted."
+msgstr ""
+
+#: apps/theme/templates/account/password_reset.html:7
+#: apps/theme/templates/account/password_reset.html:10
+#: apps/theme/templates/account/password_reset_done.html:6
+#: apps/theme/templates/account/password_reset_done.html:9
+msgid "Password Reset"
+msgstr ""
+
+#: apps/theme/templates/account/password_reset.html:16
+msgid ""
+"Forgotten your password? Enter your email address below, and we'll send you "
+"an email allowing you to reset it."
+msgstr ""
+
+#: apps/theme/templates/account/password_reset.html:24
+msgid "Reset my password"
+msgstr ""
+
+#: apps/theme/templates/account/password_reset.html:28
+#, python-format
+msgid ""
+"If you have any trouble resetting your password, contact us at <a href="
+"\"mailto:%(CONTACT_EMAIL)s\">%(CONTACT_EMAIL)s</a>."
+msgstr ""
+
+#: apps/theme/templates/account/password_reset_done.html:15
+#, python-format
+msgid ""
+"We have sent you an email. If you do not receive it within a few minutes, "
+"contact us at <a href=\"mailto:%(CONTACT_EMAIL)s\">%(CONTACT_EMAIL)s</a>."
+msgstr ""
+
+#: apps/theme/templates/account/password_reset_from_key.html:8
+msgid "Bad Token"
+msgstr ""
+
+#: apps/theme/templates/account/password_reset_from_key.html:12
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
+"a>."
+msgstr ""
+
+#: apps/theme/templates/account/password_set.html:17
+msgid "set password"
+msgstr ""
+
+#: apps/theme/templates/account/signup.html:7
+msgid "Signup"
+msgstr ""
+
+#: apps/theme/templates/account/signup.html:10
+#: apps/theme/templates/account/signup.html:26
+msgid "Sign Up"
+msgstr ""
+
+#: apps/theme/templates/account/signup.html:13
+msgid "You are already logged in."
+msgstr ""
+
+#: apps/theme/templates/account/signup.html:15
+msgid "Already have an account?"
+msgstr ""
+
+#: apps/theme/templates/account/signup.html:47
+#, python-format
+msgid ""
+"By clicking \"Sign Up\", you are indicating that you have read and agree to "
+"the <a href=\"%(terms_url)s\">Terms of Use</a> and <a href=\"%(privacy_url)s"
+"\">Privacy Policy</a>."
+msgstr ""
+
+#: apps/theme/templates/account/signup.html:49
+#, python-format
+msgid ""
+"If you have any trouble creating your account, contact us at <a href="
+"\"mailto:%(CONTACT_EMAIL)s\">%(CONTACT_EMAIL)s</a>."
+msgstr ""
+
+#: apps/theme/templates/account/social_relationship.html:6
+#: apps/theme/templates/account/social_relationship.html:9
+msgid "Social Relationship"
+msgstr ""
+
+#: apps/theme/templates/account/social_relationship.html:11
+msgid "Associated"
+msgstr ""
+
+#: apps/theme/templates/account/social_relationship.html:14
+#: apps/theme/templates/account/social_relationship.html:21
+#: apps/theme/templates/account/social_relationship.html:28
+msgid "Disconnect"
+msgstr ""
+
+#: apps/theme/templates/account/social_relationship.html:33
+msgid "Not associated"
+msgstr ""
+
+#: apps/theme/templates/account/timezone_change.html:11
+msgid ""
+"This site can localize all times into your preferred timezone. Change your "
+"timezone below."
+msgstr ""
+
+#: apps/theme/templates/account/timezone_change.html:19
+msgid "Change my timezone"
+msgstr ""
+
+#: apps/theme/templates/account/verification_sent.html:5
+#: apps/theme/templates/account/verification_sent.html:8
+msgid "Verify your email address"
+msgstr ""
+
+#: apps/theme/templates/account/verification_sent.html:10
+#, python-format
+msgid ""
+"We have sent you an email to <b>%(email)s</b> for verification. Follow the "
+"link provided to finalize the signup process. If you do not receive it "
+"within a few minutes, contact us at <a href=\"mailto:%(CONTACT_EMAIL)s\">"
+"%(CONTACT_EMAIL)s</a>."
+msgstr ""
+
+#: apps/theme/templates/emailconfirmation/confirm_email.html:6
+msgid "Confirm Email"
+msgstr ""
+
+#: apps/theme/templates/emailconfirmation/confirm_email.html:10
+msgid "Email Confirmed"
+msgstr ""
+
+#: apps/theme/templates/emailconfirmation/confirm_email.html:12
+#, python-format
+msgid ""
+"You have confirmed that %(email)s is an email address for user "
+"'%(user_display)s'."
+msgstr ""
+
+#: apps/theme/templates/emailconfirmation/confirm_email.html:14
+msgid "Invalid confirmation key."
+msgstr ""
+
+#: apps/theme/templates/idios/base.html:10
+msgid "Your Profile"
+msgstr ""
+
+#: apps/theme/templates/idios/base.html:11
+#: apps/theme/templates/idios/profiles.html:7
+#: apps/theme/templates/idios/profiles.html:10
+msgid "All Profiles"
+msgstr ""
+
+#: apps/theme/templates/idios/profile.html:6
+#: apps/theme/templates/idios/profile.html:11
+#, python-format
+msgid "Profile for %(page_user_display)s"
+msgstr ""
+
+#: apps/theme/templates/idios/profile_edit.html:5
+#: apps/theme/templates/idios/profile_edit.html:9
+#: apps/theme/templates/idios/profile_edit_ajax.html:5
+msgid "Edit Profile"
+msgstr ""
+
+#: apps/theme/templates/idios/profile_edit_ajax_success.html:4
+msgid "Success!"
+msgstr ""
+
+#: templates/_footer.html:3
+msgid "&copy; 2011 &lt;your company here&gt;"
+msgstr ""
+
+#: templates/homepage.html:6 templates/homepage.html.py:11
+msgid "Welcome"
+msgstr ""
+
+#: templates/homepage.html:13
+msgid ""
+"\n"
+"        T is a <a href=\"http://djangoproject.com/\">Django</a>\n"
+"        project intended to provide a starting point for websites. By\n"
+"        integrating numerous reusable Django apps to take care of the\n"
+"        things that many sites have in common, it lets you focus on what\n"
+"        makes your site different.\n"
+"        "
+msgstr ""
+
+#: templates/homepage.html:24
+msgid ""
+"\n"
+"        This project takes the zero_project and adds basic account "
+"management\n"
+"        functionality such as sign up, log in, password change/reset and "
+"email\n"
+"        confirmation.\n"
+"        It provide social network connect such as Google, Facebook and Sina"
+"(A twitter similar in China).\n"
+"        It is a foundation suitable for most sites that have user accounts.\n"
+"        "
+msgstr ""
+
+#: templates/homepage.html:35
+#, python-format
+msgid ""
+"Wondering <a href=\"%(what_next_url)s\" class=\"btn primary large\">What "
+"Next</a>?"
+msgstr ""
+
+#: templates/homepage.html:40
+#, python-format
+msgid ""
+"You can <a href=\"%(login_url)s\" class=\"btn\">Log In</a> or <a href="
+"\"%(signup_url)s\" class=\"btn primary\">Sign Up</a> to try out the site."
+msgstr ""
+
+#: templates/homepage.html:42
+#, python-format
+msgid ""
+"You can <a href=\"%(login_url)s\" class=\"btn primary large\">Log In</a> to "
+"try out the site."
+msgstr ""
+
+#: templates/about/what_next.html:6 templates/about/what_next.html.py:9
+msgid "What Next?"
+msgstr "下一步？"
+
+#: templates/about/what_next.html:32
+#, python-format
+msgid ""
+"Start by <a href=\"%(signup_url)s\">signing up</a> and <a href="
+"\"%(login_url)s\">logging in</a>."
+msgstr ""
+
+#: templates/about/what_next.html:34
+#, python-format
+msgid "Start by <a href=\"%(login_url)s\">logging in</a>."
+msgstr ""

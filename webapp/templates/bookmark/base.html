@@ -1,0 +1,38 @@
+{% extends "right_subnav_base.html" %}
+
+{% load i18n %}
+{% load taggit_extras %}
+
+{% block body_class %}bookmark{% endblock %}
+
+{% block subnav %}
+    <p align="right">
+        {% if request.user.is_authenticated %}
+            <button data-controls-modal="model-form-bookmark" data-backdrop="true" data-keyboard="true"
+                    class="btn large success">{% trans "Add bookmark" %}</button>
+        {% else %}
+            <a href="{% url acct_login %}?next={% url bookmarks %}"
+               class="btn large success">{% trans "Add bookmark" %}</a>
+        {% endif %}
+    </p>
+
+    <div class="alert-message block-message info">
+        <h3>{% trans "Tags" %}</h3>
+
+        <p>
+            {% get_tagcloud as tags for 'bookmark.Bookmark' %}
+            {% for tag in tags %}
+                <a class="tag" href="{% url api_bookmarks %}?tag={{ tag }}"><span class="label warning">{{ tag }}</span></a>
+            {% endfor %}
+        </p>
+    </div>
+
+    <div class="alert-message block-message info">
+    <h3>{% trans "Bookmark toolkit" %}</h3>
+    <ol>
+        <li><a href="#">{% trans "Import bookmarks" %}</a></li>
+        <li><a href="#">{% trans "Export bookmarks" %}</a></li>
+    </ol>
+    </div>
+
+{% endblock %}
