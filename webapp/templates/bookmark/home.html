@@ -38,7 +38,47 @@
                     <br/>
                     <small>${create_time}</small>
                     <br/>
-                    <a class="update_favorite_user btn small" href="/api/bookmarks/${id}/">{% trans "Favorite" %} (${num_favorite_users})</a>
+                    <a class="update_favorite_user btn small"
+                       data-loading-text="loading..."
+                       href="/api/bookmarks/${id}/">{% trans "Favorite" %} (${num_favorite_users})</a>
+                </p>
+            </div>
+        </div>
+    </script>
+
+    <script id="mineBookmarkTemplate" type="text/x-jquery-tmpl">
+        <div class="row">
+            <div class="span2">
+                <ul class="media-grid">
+                    <li>
+                        <a href="#">
+                            <img class="thumbnail" src="http://placehold.it/48x48" alt="">
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="span7">
+                <p>
+                    <strong>${title}</strong>
+                    <br/>
+                    <small><a href="${url}" target="_blank">${url}</a></small>
+                    <br/>
+                    {% trans "Tags" %} :&nbsp;
+                    {% templatetag openvariable %}each(i, tag) tags{% templatetag closevariable %}
+                    <a class="tag" href="{% url api_bookmarks %}?tag=${tag.name}"><span class="label warning">${tag.name}</span></a>
+                    {% templatetag openvariable %}/each{% templatetag closevariable %}
+                </p>
+            </div>
+            <div class="span3">
+                <p>
+                    <a class="update_bookmark btn small primary"
+                            href="/api/bookmarks/${id}/">{% trans "Update" %}
+                    </a>
+                    <br/>
+                    <a class="delete_bookmark btn small danger"
+                       href="/api/bookmarks/${id}/">{% trans "Delete" %}
+                    </a>
                 </p>
             </div>
         </div>
@@ -83,7 +123,11 @@
                 success:function (bookmarks) {
                     if (bookmarks.data.length > 0) {
                         $("#div_bookmark_list").empty();
-                        $("#bookmarkTemplate").tmpl(bookmarks.data).appendTo("#div_bookmark_list");
+                        if (mine_url != "") {
+                            $("#mineBookmarkTemplate").tmpl(bookmarks.data).appendTo("#div_bookmark_list");
+                        } else {
+                            $("#bookmarkTemplate").tmpl(bookmarks.data).appendTo("#div_bookmark_list");
+                        }
                     } else {
                         $("#div_bookmark_list").html("<p>No data</p>");
                         $("#div_pagination").empty();
@@ -94,15 +138,24 @@
         }
 
         function renderData(api_url) {
+            var mine_url = "";
+            if ($("#li_mine").attr("class") == "active") {
+                mine_url = "&mine=true&order_by=newest";
+            }
             if (api_url == null || api_url == "") {
                 api_url = "{% url api_bookmarks %}";
             }
+            api_url = api_url + mine_url;
             $.ajax({
                 url:api_url,
                 success:function (bookmarks) {
                     if (bookmarks.data.length > 0) {
                         $("#div_bookmark_list").empty();
-                        $("#bookmarkTemplate").tmpl(bookmarks.data).appendTo("#div_bookmark_list");
+                        if (mine_url != "") {
+                            $("#mineBookmarkTemplate").tmpl(bookmarks.data).appendTo("#div_bookmark_list");
+                        } else {
+                            $("#bookmarkTemplate").tmpl(bookmarks.data).appendTo("#div_bookmark_list");
+                        }
                     } else {
                         $("#div_bookmark_list").html("<p>No data</p>");
                         $("#div_pagination").empty();
@@ -202,11 +255,35 @@
                 return false;
             });
 
+            // Change the items_per_page(10, 30, 50)
             $("ul.per_page_number > li").click(function() {
                 $("ul.per_page_number > li").removeClass("active");
                 $(this).toggleClass("active");
                 items_per_page = $(this).attr("id");
                 initPagination("{% url api_bookmarks %}" + "?items_per_page=" + items_per_page);
+            });
+
+            // Delete bookmark
+            $("#div_bookmark_list").delegate("a.delete_bookmark", "click", function() {
+                var api_url = $( this ).attr( "href" );
+                send_dict = {
+                    url:api_url,
+                    type:"DELETE",
+                    dataType:"json",
+                    success:function (json, textStatus) {
+                        if (json.redirect) {
+                            window.location.href = json.redirect;
+                        } else {
+                            alert("deleted");
+                        }
+                    },
+                    error:function (xmlHttpRequest, textStatus, errorThrown) {
+                        alert(xmlHttpRequest.responseText);
+                    }
+                };
+                $.ajax(send_dict);
+
+                return false;
             });
 
         });

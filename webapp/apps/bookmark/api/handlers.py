@@ -116,7 +116,7 @@ class BookmarkHandler(BaseHandler):
         return bookmark
 
     def delete(self, request, bookmark_id):
-        bookmark = Bookmark.objects.get(pk = bookmark_id)
+        bookmark = Bookmark.objects.get(pk = int(bookmark_id))
 
         if not request.user == bookmark.owner:
             return rc.FORBIDDEN # returns HTTP 401
