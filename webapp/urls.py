@@ -11,9 +11,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'webapp.views.home', name='home'),
     # url(r'^webapp/', include('webapp.foo.urls')),
-    url(r'^$', direct_to_template, {
-        'template': 'homepage.html',
-        }, name='home'),
+    #url(r'^$', direct_to_template, {'template': 'homepage.html',}, name='home'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
@@ -29,9 +27,9 @@ urlpatterns = patterns('',
 
     url(r'^setlang', 'django.views.i18n.set_language', name='set_language'),
 
-    url(r'^bookmark/', include('bookmark.urls')),
+    url(r'^$', include('bookmark.urls')),
 
-    url(r'^bookmark/api/', include('bookmark.api.urls')),
+    url(r'^api/', include('bookmark.api.urls')),
 )
 
 if settings.DEBUG:

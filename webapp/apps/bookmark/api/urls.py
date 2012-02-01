@@ -1,4 +1,4 @@
-from api.authentication import DjangoAuthentication
+from authentication import DjangoAuthentication
 from handlers import BookmarkHandler
 from django.conf.urls.defaults import patterns, url
 from piston.resource import Resource

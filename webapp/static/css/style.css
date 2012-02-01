@@ -1,0 +1,17 @@
+a.tag:hover {
+    text-decoration: none;
+}
+
+.fr {
+    float: right;
+}
+
+.page-numbers {
+    display: block;
+    float: left;
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 120%;
+    margin-right: 3px;
+    padding: 4px 4px 4px;
+    text-decoration: none;
+}

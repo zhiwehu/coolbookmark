@@ -67,7 +67,7 @@ class BookmarkHandler(BaseHandler):
 
             # Get items_per_page
             items_per_page = int(request.GET.get('items_per_page', 10))
-            if items_per_page not in [1, 10, 20, 30]:
+            if items_per_page not in [1, 10, 30, 50]:
                 items_per_page = 10
 
             # Get current_page
@@ -101,8 +101,17 @@ class BookmarkHandler(BaseHandler):
         return bookmark
 
     def update(self, request, bookmark_id):
-        #TODO
-        bookmark = Bookmark.objects.get(pk = bookmark_id, owner=request.user)
+        #TODO not finished
+        bookmark = Bookmark.objects.get(pk = bookmark_id)
+        if not bookmark:
+            return rc.NOT_FOUND
+
+        # Update favorite_users
+        # TODO check the request.user in bookmark.favorite_users
+        if request.PUT.get('update_favorite_users'):
+            bookmark.favorite_users.add(request.user)
+            bookmark.save()
+            return {'num_favorite_users' : bookmark.favorite_users.count()}
 
         return bookmark
 

@@ -11,7 +11,7 @@
             <button data-controls-modal="model-form-bookmark" data-backdrop="true" data-keyboard="true"
                     class="btn large success">{% trans "Add bookmark" %}</button>
         {% else %}
-            <a href="{% url acct_login %}?next={% url bookmarks %}"
+            <a href="{% url acct_login %}?next={% url home %}"
                class="btn large success">{% trans "Add bookmark" %}</a>
         {% endif %}
     </p>

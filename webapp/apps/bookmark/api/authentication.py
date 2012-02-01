@@ -1,3 +1,4 @@
+from urlparse import urlparse
 from django.conf import settings
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.http import HttpResponseRedirect, HttpResponse
@@ -38,7 +39,8 @@ class DjangoAuthentication(object):
         path = urlquote(self.request.get_full_path())
         tup = self.login_url, self.redirect_field_name, path
         if self.request.is_ajax():
-            path = urlquote(self.request.META.get('HTTP_REFERER', '/'))
+            relative_url = urlparse(self.request.META.get('HTTP_REFERER', '/')).path
+            path = urlquote(relative_url)
             tup = self.login_url, self.redirect_field_name, path
             json = {'redirect': '%s?%s=%s' % tup}
             return HttpResponse(simplejson.dumps(json), mimetype='application/json')

@@ -4,6 +4,7 @@ django-timezones
 pytz
 django-social-auth
 
+django-piston
 django-taggit
 django-templatetag-sugar
 #On windows, please install django-taggit-templatetags manually.
