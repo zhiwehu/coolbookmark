@@ -72,11 +72,11 @@
             </div>
             <div class="span3">
                 <p>
-                    <a class="update_bookmark btn small primary"
-                            href="/api/bookmarks/${id}/">{% trans "Update" %}
+                    <a class="update_bookmark"
+                            href="/api/bookmarks/${id}/">{% trans "Edit" %}
                     </a>
                     <br/>
-                    <a class="delete_bookmark btn small danger"
+                    <a class="delete_bookmark"
                        href="/api/bookmarks/${id}/">{% trans "Delete" %}
                     </a>
                 </p>
@@ -94,6 +94,9 @@
             $.ajax({
                 url:api_url,
                 success:function (data) {
+                    if (data.redirect) {
+                        window.location.href = json.redirect;
+                    }
                     if (data.total > 0) {
                         $("#div_pagination").pagination(data.total, {
                             items_per_page:data.items_per_page,
@@ -271,11 +274,10 @@
                     type:"DELETE",
                     dataType:"json",
                     success:function (json, textStatus) {
-                        if (json.redirect) {
+                        if (json && json.redirect) {
                             window.location.href = json.redirect;
-                        } else {
-                            alert("deleted");
                         }
+                        initPagination("{% url api_bookmarks %}" + "?items_per_page=" + items_per_page);
                     },
                     error:function (xmlHttpRequest, textStatus, errorThrown) {
                         alert(xmlHttpRequest.responseText);
@@ -304,7 +306,10 @@
                     <li id="li_hottest" {% if order_by == "hottest" %}class="active"{% endif %}>
                         <a href="#">{% trans "Hottest" %}</a>
                     </li>
-                    <li id="li_mine"><a href="#">{% trans "Mine" %}</a></li>
+                    {% if request.user.is_authenticated %}
+                        <li id="li_mine"><a href="#">{% trans "Mine" %}</a></li>
+                    {% endif %}
+
                 </ul>
             </div>
         </div>
@@ -313,7 +318,7 @@
     <div id="div_bookmark_list"></div>
     <div class="row">
         <div id="div_pagination" class="pagination span8"></div>
-        <div class="pagination span4 fr">
+        <div id="div_page_number" class="pagination span4 fr">
             <ul class="per_page_number"><li id="10" class="active"><a href="#">10</a></li>
                 <li id="30"><a href="#">30</a></li>
                 <li id="50"><a href="#">50</a></li>
